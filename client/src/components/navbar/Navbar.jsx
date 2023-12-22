@@ -1,5 +1,5 @@
 import Avatar from "../avatar/Avatar";
-import Button from "../button/Button";
+// import Button from "../button/Button";
 
 //image assets
 import navbarStackImg from "../../assets/stackNav.svg";
@@ -42,10 +42,21 @@ function Navbar() {
           </Link>
         ) : (
           <>
-            <Link to="/">
-              <Avatar>S</Avatar>
-            </Link>
-            <Button>Log Out</Button>
+            <Avatar
+              backgroundColor="#009dff"
+              px="10px"
+              py="7px"
+              borderRadius="50%"
+              color="white"
+            >
+              <Link
+                to="/User"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                S
+              </Link>
+            </Avatar>
+            <button className="nav-item nav-links">Log Out</button>
           </>
         )}
       </div>
