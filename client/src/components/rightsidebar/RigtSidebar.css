@@ -24,6 +24,15 @@
     border: solid 1px #f1e5ac;
 }
 
+
+
+.right-sidebar-div-2 svg {
+    font-size: 1.4rem;
+    height: 20px;
+    width: 20px;
+    padding-top: 0.4rem;
+}
+
 .right-sidebar-div-1, .right-sidebar-div-2{
     display: flex;
     align-items: flex-start;

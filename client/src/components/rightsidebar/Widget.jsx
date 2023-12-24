@@ -44,7 +44,7 @@ function Widget() {
         return (
           <>
             <div className="right-sidebar-div-1">
-              <div className="right-sidebar-div-1">
+              <div className="right-sidebar-div-2">
                 {content.icon}
                 <p> {content.text} </p>
               </div>
@@ -59,7 +59,7 @@ function Widget() {
         return (
           <>
             <div className="right-sidebar-div-1">
-              <div className="right-sidebar-div-1">
+              <div className="right-sidebar-div-2">
                 {content.icon}
                 <p> {content.text} </p>
               </div>
@@ -73,8 +73,8 @@ function Widget() {
         return (
           <>
             <div className="right-sidebar-div-1">
-              <div className="right-sidebar-div-1">
-                {content.icon}
+              <div className="right-sidebar-div-2">
+                <div className="right-icon-div">{content.icon}</div>
                 <p> {content.text} </p>
               </div>
             </div>
