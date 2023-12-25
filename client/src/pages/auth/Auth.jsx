@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Auth.css";
 
 import icon from "../../assets/icon.svg";
 import AboutUs from "./AboutUs";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 function Auth() {
+  const { setUser } = useContext(AuthContext);
   const [isSignUp, setIsSignUp] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSwitch = () => {
     setIsSignUp(!isSignUp);
+  };
+
+  const handleLogin = () => {
+    setUser(1);
+    navigate(location?.state?.from?.pathname);
   };
 
   return (
@@ -100,6 +110,7 @@ function Auth() {
             {isSignUp ? "Log in" : "Sign up"}{" "}
           </button>
         </p>
+        <button onClick={handleLogin}> login test </button>
       </div>
     </section>
   );
