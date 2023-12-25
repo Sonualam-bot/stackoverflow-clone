@@ -40,45 +40,45 @@ function Widget() {
     <div className="widget">
       {/* /blog tag  */}
       <h4>The overflow blog</h4>
-      {widgetArr?.slice(0, 2).map((content) => {
+      {widgetArr?.slice(0, 2).map((content, index) => {
         return (
-          <>
+          <div key={index}>
             <div className="right-sidebar-div-1">
               <div className="right-sidebar-div-2">
                 {content.icon}
                 <p> {content.text} </p>
               </div>
             </div>
-          </>
+          </div>
         );
       })}
 
       {/* second comment   */}
       <h4>Featured on Meta</h4>
-      {widgetArr?.slice(2, 5).map((content) => {
+      {widgetArr?.slice(2, 5).map((content, index) => {
         return (
-          <>
+          <div key={index}>
             <div className="right-sidebar-div-1">
               <div className="right-sidebar-div-2">
                 {content.icon}
                 <p> {content.text} </p>
               </div>
             </div>
-          </>
+          </div>
         );
       })}
       {/* Hot Meta Posts */}
       <h4>Hot Meta Posts</h4>
-      {widgetArr?.slice(5, 9).map((content) => {
+      {widgetArr?.slice(5, 9).map((content, index) => {
         return (
-          <>
+          <div key={index}>
             <div className="right-sidebar-div-1">
               <div className="right-sidebar-div-2">
                 <div className="right-icon-div">{content.icon}</div>
                 <p> {content.text} </p>
               </div>
             </div>
-          </>
+          </div>
         );
       })}
     </div>

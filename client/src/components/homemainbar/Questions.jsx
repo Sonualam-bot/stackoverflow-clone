@@ -13,7 +13,7 @@ function Questions({ question }) {
         <p> answers </p>
       </div>
       <div className="display-question-details">
-        <Link to={`/Questions${question.id}`} className="question-title-link">
+        <Link to={`/Questions/${question._id}`} className="question-title-link">
           {" "}
           {question.questionTitle}{" "}
         </Link>

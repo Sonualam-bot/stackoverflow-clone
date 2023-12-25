@@ -7,7 +7,7 @@ function LeftSidebar() {
   return (
     <div className="left-sidebar">
       <div className="side-nav">
-        <NavLink to="/" className="side-nav-links" activeClass="active">
+        <NavLink to="/" className="side-nav-links" activeclass="active">
           <p>Home</p>
         </NavLink>
         <div className="side-nav-div">
@@ -16,7 +16,7 @@ function LeftSidebar() {
             <NavLink
               to="/Questions"
               className="side-nav-links"
-              activeClass="active"
+              activeclass="active"
             >
               <FaGlobeAmericas />
               <p style={{ paddingLeft: "40px" }}>Questions</p>
@@ -24,7 +24,7 @@ function LeftSidebar() {
             <NavLink
               to="/Tags"
               className="side-nav-links"
-              activeClass="active"
+              activeclass="active"
               style={{ padding: "40px" }}
             >
               <p>Tags</p>
@@ -32,7 +32,7 @@ function LeftSidebar() {
             <NavLink
               to="/Users"
               className="side-nav-links"
-              activeClass="active"
+              activeclass="active"
               style={{ padding: "40px" }}
             >
               <p>Users</p>
