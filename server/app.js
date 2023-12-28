@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-const userRoutes = require("./routes/users.routes.js");
+const userRouter = require("./routes/users.routes.js");
 
 const app = express();
 
@@ -13,6 +13,6 @@ app.get("/", (req, res) => {
   res.send("Stack overflow clone API");
 });
 
-app.use("/user", userRoutes);
+app.use("/user", userRouter);
 
 module.exports = app;

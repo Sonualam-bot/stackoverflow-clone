@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const connectDatabase = () => {
   // Use mongoose to connect
   mongoose
-    .connect(process.env.CONNECTION_URL)
+    .connect(process.env.CONNECTION_URL, {
+      dbName: "StackOverflow-clone",
+    })
     .then((data) => {
       console.log(`Connected to MongoDB server: ${data.connection.host}`);
     })

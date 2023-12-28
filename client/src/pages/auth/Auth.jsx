@@ -1,24 +1,68 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./Auth.css";
 
 import icon from "../../assets/icon.svg";
 import AboutUs from "./AboutUs";
-import { useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { signup, login } from "../../actions/Auth.action";
+import { useDispatch } from "react-redux";
+// import { AuthContext } from "../../context/AuthContext";
 
 function Auth() {
-  const { setUser } = useContext(AuthContext);
+  // const { setUser } = useContext(AuthContext);
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
+  const dispatch = useDispatch();
+
+  const [userSignupData, setUserSignupData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleUserLoginInput = (e) => {
+    const { name, value } = e.target;
+    setUserSignupData({
+      ...userSignupData,
+      [name]: value,
+    });
+  };
 
   const handleSwitch = () => {
     setIsSignUp(!isSignUp);
   };
 
-  const handleLogin = () => {
-    setUser(1);
-    navigate(location?.state?.from?.pathname);
+  // const handleLogin = () => {
+  //   setUser(1);
+  //   navigate(location?.state?.from?.pathname);
+  // };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (isSignUp) {
+      if (
+        !userSignupData?.name ||
+        !userSignupData?.email ||
+        !userSignupData?.password
+      ) {
+        alert("Empty Fields Detected");
+      } else {
+        dispatch(signup(userSignupData, navigate));
+      }
+    } else {
+      if (!userSignupData?.email || !userSignupData?.password) {
+        alert("Invalid Credentials");
+      }
+      dispatch(login(userSignupData, navigate));
+    }
+
+    setUserSignupData({
+      name: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -29,7 +73,7 @@ function Auth() {
           <img src={icon} alt="stack overflow" className="login-logo" />
         )}
 
-        <form>
+        <form onSubmit={handleSubmit}>
           {isSignUp && (
             <label htmlFor="name">
               <h4>Display Name</h4>
@@ -37,6 +81,8 @@ function Auth() {
                 type="text"
                 id="name"
                 name="name"
+                value={userSignupData?.name}
+                onChange={handleUserLoginInput}
                 placeholder="Enter Display name"
               />
             </label>
@@ -46,6 +92,8 @@ function Auth() {
             <input
               type="email"
               name="email"
+              value={userSignupData?.email}
+              onChange={handleUserLoginInput}
               placeholder="Enter email"
               id="email"
             />
@@ -62,6 +110,8 @@ function Auth() {
             <input
               type="password"
               name="password"
+              value={userSignupData?.password}
+              onChange={handleUserLoginInput}
               placeholder="Enter Password"
               id="password"
             />
@@ -103,14 +153,13 @@ function Auth() {
           {isSignUp ? "already have an account?" : "Don\t have an account?"}
           <button
             type="button"
-            className="handle-switch-btn"
             onClick={handleSwitch}
+            className="handle-switch-btn"
           >
             {" "}
             {isSignUp ? "Log in" : "Sign up"}{" "}
           </button>
         </p>
-        <button onClick={handleLogin}> login test </button>
       </div>
     </section>
   );
