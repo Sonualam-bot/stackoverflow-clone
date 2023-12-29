@@ -1,9 +1,11 @@
 import * as api from "../api/Auth.api";
+import { setCurrentUser } from "./CurrentUser.action";
 
 export const signup = (authData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.signUp(authData);
     dispatch({ type: "AUTH", payload: data });
+    dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
     navigate(location?.state?.from?.pathname || "/");
   } catch (error) {
     console.error("Error during signup:", error);
@@ -14,6 +16,7 @@ export const login = (authData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.logIn(authData);
     dispatch({ type: "AUTH", payload: data });
+    dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
     navigate(location?.state?.from?.pathname || "/");
   } catch (error) {
     console.log(error);

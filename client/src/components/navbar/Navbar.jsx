@@ -1,5 +1,7 @@
 import Avatar from "../avatar/Avatar";
 // import Button from "../button/Button";
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrentUser } from "../../actions/CurrentUser.action";
 
 //image assets
 import navbarStackImg from "../../assets/stackNav.svg";
@@ -8,9 +10,18 @@ import { Link } from "react-router-dom";
 
 //css file
 import "./Navbar.css";
+import { useEffect } from "react";
 
 function Navbar() {
-  const User = null;
+  const User = useSelector((state) => state.CurrentUserReducer);
+  const dispatch = useDispatch();
+
+  console.log(User);
+
+  useEffect(() => {
+    dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
+  }, [dispatch]);
+
   return (
     <nav>
       <div className="navbar">
@@ -45,7 +56,7 @@ function Navbar() {
             <Avatar
               backgroundColor="#009dff"
               px="10px"
-              py="7px"
+              py="4px"
               borderRadius="50%"
               color="white"
             >
@@ -53,7 +64,7 @@ function Navbar() {
                 to="/User"
                 style={{ color: "white", textDecoration: "none" }}
               >
-                S
+                {User.result.name.slice(0, 1)}
               </Link>
             </Avatar>
             <button className="nav-item nav-links">Log Out</button>

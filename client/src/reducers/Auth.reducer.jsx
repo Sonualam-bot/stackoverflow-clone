@@ -1,6 +1,4 @@
-const initialState = {};
-
-export const AuthReducer = (state = initialState, action) => {
+export const AuthReducer = (state = null, action) => {
   switch (action.type) {
     case "AUTH":
       localStorage.setItem("Profile", JSON.stringify({ ...action?.payload }));
@@ -9,7 +7,7 @@ export const AuthReducer = (state = initialState, action) => {
         data: action?.payload,
       };
     default:
-      break;
+      return state;
   }
 };
 
