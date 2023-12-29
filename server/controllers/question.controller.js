@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const Question = require("../models/question.model");
 
 const AskQuestion = async (req, res) => {
@@ -24,6 +23,30 @@ const AskQuestion = async (req, res) => {
   }
 };
 
+const getAllQuestions = async (req, res) => {
+  try {
+    const questionList = await Question.find({});
+    if (questionList.length === 0) {
+      res.status(404).json({
+        success: false,
+        message: "No questions in DB",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully fetched questions",
+      data: questionList,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: `Internal Server error ${error} `,
+    });
+  }
+};
+
 module.exports = {
   AskQuestion,
+  getAllQuestions,
 };

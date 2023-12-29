@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import "./Questions.css";
+import { useSelector } from "react-redux";
 import Avatar from "../../components/avatar/Avatar";
 
 //icons
@@ -8,116 +9,9 @@ import DisplayAnswer from "./DisplayAnswer";
 
 function QuestionDetail() {
   const { id } = useParams();
+  const questionsList = useSelector((state) => state.QuestionReducer);
 
-  const questionsList = [
-    {
-      _id: 1,
-      upVotes: 3,
-      downVotes: 2,
-      noOfAnswers: 2,
-      questionTitle: "What is a function?",
-      questionBody: "It is meant to be",
-      questionTags: ["java", "node js", "react js", "mongoDb"],
-      userPosted: "renon",
-      userId: 1,
-      askedOn: "jan 1",
-      answer: [
-        {
-          _id: 1,
-          answerBody: "Answer",
-          userAnswered: "kashif",
-          answeredOn: "jan 2",
-          userId: 2,
-        },
-      ],
-    },
-    {
-      _id: 2,
-      upVotes: 3,
-      downVotes: 2,
-      noOfAnswers: 2,
-      questionTitle: "What is a function?",
-      questionBody: "It is meant to be",
-      questionTags: ["java", "node js", "react js", "mongoDb"],
-      userPosted: "renon",
-      userId: 1,
-      askedOn: "jan 1",
-      answer: [
-        {
-          _id: 1,
-          answerBody: "Answer",
-          userAnswered: "kashif",
-          answeredOn: "jan 2",
-          userId: 2,
-        },
-      ],
-    },
-    {
-      _id: 3,
-      upVotes: 3,
-      downVotes: 2,
-      noOfAnswers: 2,
-      questionTitle: "What is a function?",
-      questionBody: "It is meant to be",
-      questionTags: ["java", "node js", "react js", "mongoDb"],
-      userPosted: "renon",
-      userId: 1,
-      askedOn: "jan 1",
-      answer: [
-        {
-          _id: 1,
-          answerBody: "Answer",
-          userAnswered: "kashif",
-          answeredOn: "jan 2",
-          userId: 2,
-        },
-      ],
-    },
-    {
-      _id: 4,
-      upVotes: 3,
-      downVotes: 2,
-      noOfAnswers: 2,
-      questionTitle: "What is a function?",
-      questionBody: "It is meant to be",
-      questionTags: ["java", "node js", "react js", "mongoDb"],
-      userPosted: "renon",
-      userId: 1,
-      askedOn: "jan 1",
-      answer: [
-        {
-          _id: 1,
-          answerBody: "Answer",
-          userAnswered: "kashif",
-          answeredOn: "jan 2",
-          userId: 2,
-        },
-      ],
-    },
-    {
-      _id: 5,
-      upVotes: 3,
-      downVotes: 2,
-      noOfAnswers: 2,
-      questionTitle: "What is a function?",
-      questionBody: "It is meant to be",
-      questionTags: ["java", "node js", "react js", "mongoDb"],
-      userPosted: "renon",
-      userId: 1,
-      askedOn: "jan 1",
-      answer: [
-        {
-          _id: 1,
-          answerBody: "Answer",
-          userAnswered: "kashif",
-          answeredOn: "jan 2",
-          userId: 2,
-        },
-      ],
-    },
-  ];
-
-  const res = questionsList.find((question) => question._id === +id);
+  const res = questionsList?.data?.find((question) => question._id === id);
 
   const {
     _id,
