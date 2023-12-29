@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const userRouter = require("./routes/users.routes.js");
+const questionRouter = require("./routes/question.routes.js");
 
 const app = express();
 
@@ -14,5 +15,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRouter);
+app.use("/questions", questionRouter);
 
 module.exports = app;

@@ -1,7 +1,7 @@
-import * as api from "../api/Auth.api";
+import * as api from "../api";
 import { setCurrentUser } from "./CurrentUser.action";
 
-export const signup = (authData, navigate) => async (dispatch) => {
+export const signup = (authData, navigate, location) => async (dispatch) => {
   try {
     const { data } = await api.signUp(authData);
     dispatch({ type: "AUTH", payload: data });
@@ -12,12 +12,12 @@ export const signup = (authData, navigate) => async (dispatch) => {
   }
 };
 
-export const login = (authData, navigate) => async (dispatch) => {
+export const login = (authData, navigate, location) => async (dispatch) => {
   try {
     const { data } = await api.logIn(authData);
     dispatch({ type: "AUTH", payload: data });
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
-    navigate(location?.state?.from?.pathname || "/");
+    navigate(location?.state?.from?.pathname);
   } catch (error) {
     console.log(error);
     alert(" user Not Found");

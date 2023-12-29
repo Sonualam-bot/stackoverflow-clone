@@ -3,7 +3,7 @@ import "./Auth.css";
 
 import icon from "../../assets/icon.svg";
 import AboutUs from "./AboutUs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { signup, login } from "../../actions/Auth.action";
 import { useDispatch } from "react-redux";
 // import { AuthContext } from "../../context/AuthContext";
@@ -12,7 +12,7 @@ function Auth() {
   // const { setUser } = useContext(AuthContext);
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
-  // const location = useLocation();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const [userSignupData, setUserSignupData] = useState({
@@ -49,13 +49,13 @@ function Auth() {
       ) {
         alert("Empty Fields Detected");
       } else {
-        dispatch(signup(userSignupData, navigate));
+        dispatch(signup(userSignupData, navigate, location));
       }
     } else {
       if (!userSignupData?.email || !userSignupData?.password) {
         alert("Invalid Credentials");
       }
-      dispatch(login(userSignupData, navigate));
+      dispatch(login(userSignupData, navigate, location));
     }
 
     setUserSignupData({
