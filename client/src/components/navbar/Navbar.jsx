@@ -62,7 +62,7 @@ function Navbar() {
                 to="/User"
                 style={{ color: "white", textDecoration: "none" }}
               >
-                {User.result.name.slice(0, 1)}
+                {User.result.name.slice(0, 1).toUpperCase()}
               </Link>
             </Avatar>
             <button className="nav-item nav-links">

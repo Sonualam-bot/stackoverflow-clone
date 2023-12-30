@@ -3,10 +3,9 @@ import Avatar from "../../components/avatar/Avatar";
 import "./Questions.css";
 
 function DisplayAnswer({ question }) {
-  console.log(question.answer);
   return (
     <div>
-      {question.answer.map((ans) => {
+      {question?.map((ans) => {
         return (
           <div className="display-ans" key={ans._id}>
             <p> {ans.answerBody} </p>
@@ -24,7 +23,7 @@ function DisplayAnswer({ question }) {
                 >
                   <Avatar backgroundColor="green" px="8px" py="5px">
                     {" "}
-                    {ans.userAnswered.charAt(0).toUpperCase()}{" "}
+                    {ans?.userAnswered?.charAt(0).toUpperCase()}{" "}
                   </Avatar>
                   <div>{ans.userAnswered}</div>
                 </Link>

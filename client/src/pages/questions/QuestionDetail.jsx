@@ -1,15 +1,22 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "./Questions.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Avatar from "../../components/avatar/Avatar";
+import { postAnswer } from "../../actions/Question.action";
 
 //icons
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import DisplayAnswer from "./DisplayAnswer";
+import { useState } from "react";
 
 function QuestionDetail() {
+  const [userAnswer, setUserAnswer] = useState("");
   const { id } = useParams();
   const questionsList = useSelector((state) => state.QuestionReducer);
+  const User = useSelector((state) => state.CurrentUserReducer);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const res = questionsList?.data?.find((question) => question._id === id);
 
@@ -24,11 +31,35 @@ function QuestionDetail() {
     userId,
     userPosted,
     noOfAnswers,
+    answer,
   } = res;
+
+  const handlePostAnswer = (e, answerLength) => {
+    e.preventDefault();
+
+    if (User === null) {
+      alert("Login or Signup to answer  a question");
+      navigate("/Auth");
+    } else {
+      if (userAnswer === "") {
+        alert("Enter an answer before submitting");
+      } else {
+        dispatch(
+          postAnswer({
+            id,
+            noOfAnswers: answerLength + 1,
+            answerBody: userAnswer,
+            userAnswered: User?.result?.name,
+          })
+        );
+        setUserAnswer("");
+      }
+    }
+  };
 
   return (
     <div className="question-details-page">
-      {questionsList === null ? (
+      {questionsList?.data === null ? (
         <h1>Loading...</h1>
       ) : (
         <>
@@ -73,14 +104,21 @@ function QuestionDetail() {
             </section>
             {noOfAnswers !== 0 && (
               <section>
-                <h3>{noOfAnswers} answers</h3>
-                <DisplayAnswer key={_id} question={res} />
+                <h3>{noOfAnswers} Answers</h3>
+                <DisplayAnswer key={_id} question={res.answer} />
               </section>
             )}
             <section className="post-ans-container">
               <h3> Your Answer </h3>
-              <form>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+              <form onSubmit={(e) => handlePostAnswer(e, answer.length)}>
+                <textarea
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                  value={userAnswer}
+                  onChange={(e) => setUserAnswer(e.target.value)}
+                ></textarea>
                 <input
                   type="submit"
                   className="post-ans-btn"
