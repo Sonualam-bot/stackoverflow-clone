@@ -1,6 +1,7 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
+import copy from "copy-to-clipboard";
 
 import "./Questions.css";
 import Avatar from "../../components/avatar/Avatar";
@@ -19,6 +20,8 @@ function QuestionDetail() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const url = "http://localhost:5173";
 
   const res = questionsList?.data?.find((question) => question._id === id);
 
@@ -59,6 +62,11 @@ function QuestionDetail() {
     }
   };
 
+  const handleShare = () => {
+    copy(url + location?.pathname);
+    alert("copied URL: " + url + location?.pathname);
+  };
+
   return (
     <div className="question-details-page">
       {questionsList?.data === null ? (
@@ -83,7 +91,9 @@ function QuestionDetail() {
                   </div>
                   <div className="question-actions-user">
                     <div>
-                      <button type="button">Share</button>
+                      <button type="button" onClick={handleShare}>
+                        Share
+                      </button>
                       <button type="button">Delete</button>
                     </div>
                     <div>
@@ -107,7 +117,11 @@ function QuestionDetail() {
             {noOfAnswers !== 0 && (
               <section>
                 <h3>{noOfAnswers} Answers</h3>
-                <DisplayAnswer key={_id} question={res.answer} />
+                <DisplayAnswer
+                  key={_id}
+                  question={res.answer}
+                  handleShare={handleShare}
+                />
               </section>
             )}
             <section className="post-ans-container">

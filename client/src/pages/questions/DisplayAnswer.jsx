@@ -4,7 +4,7 @@ import moment from "moment";
 import Avatar from "../../components/avatar/Avatar";
 import "./Questions.css";
 
-function DisplayAnswer({ question }) {
+function DisplayAnswer({ question, handleShare }) {
   return (
     <div>
       {question?.map((ans) => {
@@ -13,7 +13,9 @@ function DisplayAnswer({ question }) {
             <p> {ans.answerBody} </p>
             <div className="question-actions-user">
               <div>
-                <button type="button">Share</button>
+                <button type="button" onClick={handleShare}>
+                  Share
+                </button>
                 <button type="button">Delete</button>
               </div>
               <div>
