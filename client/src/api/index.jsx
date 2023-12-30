@@ -13,8 +13,11 @@ export const getAllQuestions = () => API.get("/questions/get");
 
 export const postAnswer = (id, noOfAnswers, answerBody, userAnswered) => {
   return API.patch(`/answer/post/${id}`, {
+    id,
     noOfAnswers,
     answerBody,
     userAnswered,
   });
 };
+
+export const deleteQuestions = (id) => API.delete(`/questions/delete/${id}`);

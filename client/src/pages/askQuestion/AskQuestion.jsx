@@ -34,6 +34,7 @@ function AskQuestion() {
         {
           ...questionData,
           userPosted: User.result.name,
+          userId: User?.result?._id,
         },
         navigate
       )

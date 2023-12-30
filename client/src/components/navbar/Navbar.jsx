@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import Avatar from "../avatar/Avatar";
 // import Button from "../button/Button";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,7 +12,6 @@ import { Link } from "react-router-dom";
 
 //css file
 import "./Navbar.css";
-import { useEffect } from "react";
 
 function Navbar() {
   const User = useSelector((state) => state.CurrentUserReducer);
