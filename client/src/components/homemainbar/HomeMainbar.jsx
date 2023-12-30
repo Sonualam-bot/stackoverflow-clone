@@ -21,8 +21,10 @@ function HomeMainbar() {
         </Link>
       </div>
       <div>
-        {questionsList?.data?.length === 0 ? (
-          <h1>Loading...</h1>
+        {questionsList?.data === null ? (
+          <>
+            <h1>Loading...</h1>
+          </>
         ) : (
           <>
             <p>{questionsList?.data?.length} questions</p>

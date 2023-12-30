@@ -70,7 +70,12 @@ function QuestionDetail() {
   return (
     <div className="question-details-page">
       {questionsList?.data === null ? (
-        <h1>Loading...</h1>
+        <>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+        </>
       ) : (
         <>
           <div key={_id}>
