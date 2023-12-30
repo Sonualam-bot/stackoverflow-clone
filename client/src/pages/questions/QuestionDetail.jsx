@@ -1,6 +1,8 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
-import "./Questions.css";
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
+
+import "./Questions.css";
 import Avatar from "../../components/avatar/Avatar";
 import { postAnswer } from "../../actions/Question.action";
 
@@ -85,7 +87,7 @@ function QuestionDetail() {
                       <button type="button">Delete</button>
                     </div>
                     <div>
-                      <p>asked {askedOn} </p>
+                      <p>asked {moment(askedOn).fromNow()} </p>
                       <Link
                         to={`User/${userId}`}
                         className="user-link"

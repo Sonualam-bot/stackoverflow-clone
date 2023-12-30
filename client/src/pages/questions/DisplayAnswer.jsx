@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import moment from "moment";
+
 import Avatar from "../../components/avatar/Avatar";
 import "./Questions.css";
 
@@ -15,7 +17,7 @@ function DisplayAnswer({ question }) {
                 <button type="button">Delete</button>
               </div>
               <div>
-                <p>answered {ans.answeredOn} </p>
+                <p>answered {moment(ans.answeredOn).fromNow()} </p>
                 <Link
                   to={`User/${ans.userId}`}
                   className="user-link"

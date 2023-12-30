@@ -6,8 +6,6 @@ import QuestionList from "./QuestionList";
 function HomeMainbar() {
   const questionsList = useSelector((state) => state.QuestionReducer);
 
-  console.log(questionsList);
-
   const location = useLocation();
 
   return (
