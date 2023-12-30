@@ -3,21 +3,21 @@ const Question = require("../models/question.model");
 
 const postAnswer = async (req, res) => {
   try {
-    const { id: _id } = req.params;
-    const { noOfAnswers, answerBody, userAnswered } = req.body;
+    const id = req.params.id;
+    const { noOfAnswers, answerBody, userAnswered, userId } = req.body;
 
-    if (!mongoose.Types.ObjectId.isValid(_id)) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(404).json({
         success: false,
         message: "question unavailable...",
       });
     }
 
-    updateNoOfQuestions(_id, noOfAnswers);
+    updateNoOfQuestions(id, noOfAnswers);
 
-    const updatedQuestion = await Question.findByIdAndUpdate(_id, {
+    const updatedQuestion = await Question.findByIdAndUpdate(id, {
       $addToSet: {
-        answer: [{ answerBody, userAnswered, userId: req.userId }],
+        answer: [{ answerBody, userAnswered, userId }],
       },
     });
 
@@ -44,6 +44,45 @@ const updateNoOfQuestions = async (_id, noOfAnswers) => {
   }
 };
 
+const deleteAnswer = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { answerId, noOfAnswers } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        success: false,
+        message: "question unavailable...",
+      });
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(answerId)) {
+      return res.status(404).json({
+        success: false,
+        message: "answer unavailable...",
+      });
+    }
+
+    updateNoOfQuestions(id, noOfAnswers);
+
+    await Question.updateOne(
+      { _id: id },
+      { $pull: { answer: { _id: answerId } } }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully deleted...",
+    });
+  } catch (error) {
+    res.status(405).json({
+      success: false,
+      message: `error.message`,
+    });
+  }
+};
+
 module.exports = {
   postAnswer,
+  deleteAnswer,
 };
