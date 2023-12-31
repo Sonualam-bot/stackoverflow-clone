@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import decode from "jwt-decode";
 
 import Avatar from "../avatar/Avatar";
 // import Button from "../button/Button";
@@ -16,8 +18,22 @@ import "./Navbar.css";
 function Navbar() {
   const User = useSelector((state) => state.CurrentUserReducer);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch({ type: "LOG_OUT" });
+    navigate("/");
+    dispatch(setCurrentUser(null));
+  };
 
   useEffect(() => {
+    const token = User?.token;
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        handleLogout();
+      }
+    }
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
   }, [dispatch]);
 
@@ -66,9 +82,9 @@ function Navbar() {
                 {User.result.name.slice(0, 1).toUpperCase()}
               </Link>
             </Avatar>
-            <button className="nav-item nav-links">
+            <button className="nav-item nav-links" onClick={handleLogout}>
               {" "}
-              {User ? "Log Out" : "Log In"}{" "}
+              Log out
             </button>
           </>
         )}

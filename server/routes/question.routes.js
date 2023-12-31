@@ -8,8 +8,9 @@ const {
   deleteQuestion,
   voteQuestion,
 } = require("../controllers/question.controller");
+const { auth } = require("../middlewares/auth.middleware");
 
-questionRouter.post("/Ask", AskQuestion);
+questionRouter.post("/Ask", auth, AskQuestion);
 questionRouter.get("/get", getAllQuestions);
 questionRouter.delete("/delete/:id", deleteQuestion);
 questionRouter.patch("/vote/:id", voteQuestion);

@@ -12,12 +12,12 @@ export const signup = (authData, navigate, location) => async (dispatch) => {
   }
 };
 
-export const login = (authData, navigate, location) => async (dispatch) => {
+export const login = (authData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.logIn(authData);
     dispatch({ type: "AUTH", payload: data });
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
-    navigate(location?.state?.from?.pathname);
+    navigate("/");
   } catch (error) {
     console.log(error);
     alert(" user Not Found");
