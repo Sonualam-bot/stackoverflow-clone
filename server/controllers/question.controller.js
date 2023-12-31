@@ -70,8 +70,66 @@ const deleteQuestion = async (req, res) => {
   }
 };
 
+const voteQuestion = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { value, userId } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        success: false,
+        message: "Question unavailable",
+      });
+    }
+
+    const question = await Question.findById(id);
+
+    const upIndex = question.upVote.findIndex((id) => id === String(userId));
+    const downIndex = question.downVote.findIndex(
+      (id) => id === String(userId)
+    );
+
+    if (value === "upVote") {
+      if (downIndex !== -1) {
+        question.downVote = question.downVote.filter(
+          (id) => id !== String(userId)
+        );
+      }
+      if (upIndex === -1) {
+        question.upVote.push(userId);
+      } else {
+        question.upVote = question.upVote.filter((id) => id !== String(userId));
+      }
+    } else if (value === "downVote") {
+      if (upIndex !== -1) {
+        question.upVote = question.upVote.filter((id) => id !== String(userId));
+      }
+      if (downIndex === -1) {
+        question.downVote.push(userId);
+      } else {
+        question.downVote = question.downVote.filter(
+          (id) => id !== String(userId)
+        );
+      }
+    }
+
+    await Question.findByIdAndUpdate(id, question);
+
+    res.status(200).json({
+      success: true,
+      message: "Voted successfully...",
+    });
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "id not found...",
+    });
+  }
+};
+
 module.exports = {
   AskQuestion,
   getAllQuestions,
   deleteQuestion,
+  voteQuestion,
 };

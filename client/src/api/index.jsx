@@ -13,6 +13,10 @@ export const getAllQuestions = () => API.get("/questions/get");
 
 export const deleteQuestions = (id) => API.delete(`/questions/delete/${id}`);
 
+export const voteQuestion = (id, value, userId) => {
+  return API.patch(`/questions/vote/${id}`, { value, userId });
+};
+
 export const postAnswer = (
   id,
   noOfAnswers,

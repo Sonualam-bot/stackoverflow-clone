@@ -14,7 +14,6 @@ function DisplayAnswer({ question, handleShare }) {
   const handleDelete = (answerId, noOfAnswers) => {
     dispatch(deleteAnswer(id, answerId, noOfAnswers - 1));
   };
-  console.log(question);
 
   return (
     <div>

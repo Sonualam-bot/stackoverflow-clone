@@ -5,7 +5,11 @@ import copy from "copy-to-clipboard";
 
 import "./Questions.css";
 import Avatar from "../../components/avatar/Avatar";
-import { deleteQuestion, postAnswer } from "../../actions/Question.action";
+import {
+  deleteQuestion,
+  postAnswer,
+  voteQuestion,
+} from "../../actions/Question.action";
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import DisplayAnswer from "./DisplayAnswer";
 import { useState } from "react";
@@ -56,6 +60,13 @@ function QuestionDetail() {
     dispatch(deleteQuestion(id, navigate));
   };
 
+  const handleUpVote = (id) => {
+    dispatch(voteQuestion(id, "upVote", User?.result?._id));
+  };
+  const handleDownVote = (id) => {
+    dispatch(voteQuestion(id, "downVote", User?.result?._id));
+  };
+
   return (
     <div className="question-details-page">
       {!questionsList?.data ? (
@@ -65,8 +76,8 @@ function QuestionDetail() {
           {res?.map((data) => {
             const {
               _id,
-              upVotes,
-              downVotes,
+              upVote,
+              downVote,
               questionTitle,
               questionBody,
               questionTags,
@@ -83,9 +94,15 @@ function QuestionDetail() {
                   <h1>{questionTitle}</h1>
                   <div className="question-details-container-2">
                     <div className="question-votes">
-                      <TiArrowSortedUp className="votes-icon" />
-                      <p> {upVotes - downVotes} </p>
-                      <TiArrowSortedDown className="votes-icon" />
+                      <TiArrowSortedUp
+                        className="votes-icon"
+                        onClick={() => handleUpVote(_id)}
+                      />
+                      <p> {upVote.length - downVote.length} </p>
+                      <TiArrowSortedDown
+                        className="votes-icon"
+                        onClick={() => handleDownVote(_id)}
+                      />
                     </div>
                     <div style={{ width: "100%" }}>
                       <p className="question-body"> {questionBody} </p>
