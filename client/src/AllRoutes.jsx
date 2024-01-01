@@ -6,6 +6,7 @@ import AskQuestion from "./pages/askQuestion/AskQuestion";
 import RequiresAuth from "./components/requiresAuth/RequiresAuth";
 import DisplayQuestions from "./pages/questions/DisplayQuestions";
 import Tags from "./pages/tags/Tags";
+import Users from "./pages/users/Users";
 
 function AllRoutes() {
   return (
@@ -23,6 +24,7 @@ function AllRoutes() {
       />
       <Route path="/Questions/:id" element={<DisplayQuestions />} />
       <Route path="/Tags" element={<Tags />} />
+      <Route path="/Users" element={<Users />} />
     </Routes>
   );
 }
