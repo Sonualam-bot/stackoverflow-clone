@@ -28,4 +28,37 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers };
+const updateProfile = async (req, res) => {
+  try {
+    const { id: _id } = req.params;
+    const { name, about, tags } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
+      return res.status(404).json({
+        success: false,
+        message: "Question unavailale...",
+      });
+    }
+
+    const updatedProfile = await Users.findByIdAndUpdate(
+      _id,
+      {
+        $set: { name: name, about: about, tags: tags },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "profile updated successfully...",
+      updatedProfile: updatedProfile,
+    });
+  } catch (error) {
+    res.status(405).json({
+      success: false,
+      message: `${error.message}`,
+    });
+  }
+};
+
+module.exports = { getAllUsers, updateProfile };
