@@ -76,7 +76,7 @@ function Navbar() {
               color="white"
             >
               <Link
-                to="/User"
+                to={`/Users/${User?.result?._id}`}
                 style={{ color: "white", textDecoration: "none" }}
               >
                 {User.result.name.slice(0, 1).toUpperCase()}
