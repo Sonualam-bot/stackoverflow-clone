@@ -128,7 +128,7 @@ function QuestionDetail() {
                         <div>
                           <p>asked {moment(askedOn).fromNow()} </p>
                           <Link
-                            to={`User/${userId}`}
+                            to={`/Users/${userId}`}
                             className="user-link"
                             style={{ color: "#0086d8" }}
                           >

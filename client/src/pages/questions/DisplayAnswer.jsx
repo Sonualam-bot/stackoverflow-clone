@@ -40,7 +40,7 @@ function DisplayAnswer({ question, handleShare }) {
               <div>
                 <p>answered {moment(ans.answeredOn).fromNow()} </p>
                 <Link
-                  to={`User/${ans.userId}`}
+                  to={`/Users/${ans?.userId}`}
                   className="user-link"
                   style={{ color: "#0086d8" }}
                 >
