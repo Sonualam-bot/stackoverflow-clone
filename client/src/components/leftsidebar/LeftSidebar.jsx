@@ -25,7 +25,7 @@ function LeftSidebar() {
               to="/Tags"
               className="side-nav-links"
               activeclass="active"
-              style={{ padding: "40px" }}
+              style={{ paddingLeft: "40px" }}
             >
               <p>Tags</p>
             </NavLink>
@@ -33,7 +33,7 @@ function LeftSidebar() {
               to="/Users"
               className="side-nav-links"
               activeclass="active"
-              style={{ padding: "40px" }}
+              style={{ paddingLeft: "40px" }}
             >
               <p>Users</p>
             </NavLink>
