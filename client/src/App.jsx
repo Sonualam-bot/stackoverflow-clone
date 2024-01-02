@@ -5,7 +5,7 @@ import AllRoutes from "./AllRoutes";
 import Navbar from "./components/navbar/Navbar";
 import { fetchAllQuestions } from "./actions/Question.action";
 import { fetchAllUsers } from "./actions/Users.action";
-import Fallback from "./fallback";
+import Fallback from "./Fallback";
 
 function App() {
   const dispatch = useDispatch();
