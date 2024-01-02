@@ -1,25 +1,28 @@
-import { FaPen, FaCommentAlt, FaStackOverflow } from "react-icons/fa";
+// import { FaStackOverflow } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faMessage } from "@fortawesome/free-solid-svg-icons";
+import { faStackOverflow } from "@fortawesome/free-brands-svg-icons";
 
 function Widget() {
   const widgetArr = [
     {
-      icon: <FaPen />,
+      icon: <FontAwesomeIcon icon={faPen} />,
       text: "Observability is the key to the future of software and your DevOps Career",
     },
     {
-      icon: <FaPen />,
+      icon: <FontAwesomeIcon icon={faPen} />,
       text: "Podcast 374: How valuable is your screen time?",
     },
     {
-      icon: <FaCommentAlt />,
+      icon: <FontAwesomeIcon icon={faMessage} />,
       text: "Review Queue and workflows - FInal release ",
     },
     {
-      icon: <FaCommentAlt />,
+      icon: <FontAwesomeIcon icon={faMessage} />,
       text: "Please welcome Valued Associations: #958 - V28last #959 - Spencer",
     },
     {
-      icon: <FaStackOverflow />,
+      icon: <FontAwesomeIcon icon={faStackOverflow} />,
       text: "Outdated Answers: accepted answer is not proceeded on Stack Overflow ",
     },
     {
