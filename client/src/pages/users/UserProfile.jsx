@@ -16,7 +16,9 @@ function UserProfile() {
   const users = useSelector((state) => state.UsersReducer);
   const { id } = useParams();
 
-  const currentProfile = users?.allUserData?.filter((user) => user._id === id);
+  const currentProfile = users?.allUserData?.filter(
+    (user) => user._id === id
+  )[0];
   const currentUser = useSelector((state) => state.CurrentUserReducer);
 
   const [switchProfile, setSwitchProfile] = useState(false);
@@ -28,29 +30,25 @@ function UserProfile() {
         <section>
           <div className="user-details-container">
             <div className="user-details">
-              {currentProfile?.map((user) => {
-                return (
-                  <div className="user-details-2" key={user?._id}>
-                    <Avatar
-                      backgroundColor="purple"
-                      color="white"
-                      fontSize="50px"
-                      px="50px"
-                      py="30px"
-                    >
-                      {user?.name?.charAt(0).toUpperCase()}
-                    </Avatar>
-                    <div className="user-name">
-                      <h1> {user?.name} </h1>
-                      <p>
-                        {" "}
-                        <FontAwesomeIcon icon={faBirthdayCake} /> Joined{" "}
-                        {moment(user?.joinedOn).fromNow()}{" "}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
+              <div className="user-details-2" key={currentProfile?._id}>
+                <Avatar
+                  backgroundColor="purple"
+                  color="white"
+                  fontSize="50px"
+                  px="50px"
+                  py="30px"
+                >
+                  {currentProfile?.name?.charAt(0).toUpperCase()}
+                </Avatar>
+                <div className="user-name">
+                  <h1> {currentProfile?.name} </h1>
+                  <p>
+                    {" "}
+                    <FontAwesomeIcon icon={faBirthdayCake} /> Joined{" "}
+                    {moment(currentProfile?.joinedOn).fromNow()}{" "}
+                  </p>
+                </div>
+              </div>
             </div>
             {currentUser?.result?._id === id && (
               <button
