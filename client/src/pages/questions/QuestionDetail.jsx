@@ -23,7 +23,7 @@ function QuestionDetail() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const url = "http://localhost:5173";
+  const url = "https://stackoverflow-clone-mralam.vercel.app";
 
   const res = questionsList?.data?.filter((question) => question?._id === id);
 
