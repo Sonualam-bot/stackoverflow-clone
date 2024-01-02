@@ -54,7 +54,7 @@ const updateProfile = async (req, res) => {
       updatedProfile: updatedProfile,
     });
   } catch (error) {
-    res.status(405).json({
+    res.status(500).json({
       success: false,
       message: `${error.message}`,
     });
