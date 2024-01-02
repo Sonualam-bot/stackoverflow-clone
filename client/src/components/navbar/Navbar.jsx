@@ -49,13 +49,13 @@ function Navbar() {
             height="40px"
           />
         </Link>
-        <Link to="/" className="nav-item nav-btn">
+        <Link to="/" className="nav-item nav-btn-2">
           About
         </Link>
-        <Link to="/" className="nav-item nav-btn">
+        <Link to="/" className="nav-item nav-btn-2">
           Products
         </Link>
-        <Link to="/" className="nav-item nav-btn">
+        <Link to="/" className="nav-item nav-btn-2">
           For Teams
         </Link>
         <form>

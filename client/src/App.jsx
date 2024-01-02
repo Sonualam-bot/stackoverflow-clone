@@ -5,6 +5,7 @@ import AllRoutes from "./AllRoutes";
 import Navbar from "./components/navbar/Navbar";
 import { fetchAllQuestions } from "./actions/Question.action";
 import { fetchAllUsers } from "./actions/Users.action";
+import Fallback from "./fallback";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,8 +17,13 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <AllRoutes />
+      <div className="parent">
+        <Navbar />
+        <AllRoutes />
+      </div>
+      <div className="fallback">
+        <Fallback />
+      </div>
     </>
   );
 }

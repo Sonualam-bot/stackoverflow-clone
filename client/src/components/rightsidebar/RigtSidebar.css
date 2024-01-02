@@ -80,3 +80,11 @@
    border-radius: 10px;
    font-size: 14px;
 }
+
+
+@media screen and (max-width: 980px) {
+    .right-sidebar{
+        display: none;
+    }
+    
+}

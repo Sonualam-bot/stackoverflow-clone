@@ -23,7 +23,8 @@
 }
 
 .nav-logo{
-    padding: 5px 25px ;
+    padding: 1px 11.5px ;
+    scale: 1.5;
 }
 
 .nav-item{
@@ -36,6 +37,10 @@
 }
 
 .nav-btn{
+    cursor: pointer;
+    padding: 10px 20px;
+}
+.nav-btn-2{
     cursor: pointer;
     border-radius: 20px;
     padding: 10px 20px;
@@ -52,7 +57,7 @@
 }
 
 .navbar form input{
-    min-width: 90%;
+    width: 90%;
     margin: 0;
     padding: 8px 10px 8px 32px;
     font-size: 13px;
@@ -76,4 +81,10 @@
 
 .nav-links:hover{
     background-color: #d3e4eb;
+}
+
+@media screen and (max-width: 980px){
+    .nav-btn-2{
+        display: none;
+    }
 }
