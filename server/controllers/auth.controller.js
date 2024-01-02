@@ -22,7 +22,7 @@ const signup = async (req, res) => {
       password: hashedPassword,
     });
     const token = jwt.sign({ email: newUser.email, id: newUser._id }, "test", {
-      expiresIn: "1h",
+      expiresIn: "24h",
     });
 
     res.status(200).json({
@@ -67,7 +67,7 @@ const login = async (req, res) => {
       { email: existingUser.email, id: existingUser._id },
       "test",
       {
-        expiresIn: "1h",
+        expiresIn: "24h",
       }
     );
 
