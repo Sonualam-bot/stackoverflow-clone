@@ -33,11 +33,6 @@ function Auth() {
     setIsSignUp(!isSignUp);
   };
 
-  // const handleLogin = () => {
-  //   setUser(1);
-  //   navigate(location?.state?.from?.pathname);
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
