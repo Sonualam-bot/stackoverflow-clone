@@ -145,7 +145,7 @@ function Auth() {
           )}
         </form>
         <p>
-          {isSignUp ? "already have an account?" : "Don\t have an account?"}
+          {isSignUp ? "already have an account?" : "Don't have an account?"}
           <button
             type="button"
             onClick={handleSwitch}

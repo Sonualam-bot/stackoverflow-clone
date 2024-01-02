@@ -21,9 +21,13 @@ const signup = async (req, res) => {
       email,
       password: hashedPassword,
     });
-    const token = jwt.sign({ email: newUser.email, id: newUser._id }, "test", {
-      expiresIn: "24h",
-    });
+    const token = jwt.sign(
+      { email: newUser.email, id: newUser._id },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "24h",
+      }
+    );
 
     res.status(200).json({
       success: true,
@@ -65,7 +69,7 @@ const login = async (req, res) => {
 
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
-      "test",
+      process.env.JWT_SECRET,
       {
         expiresIn: "24h",
       }
