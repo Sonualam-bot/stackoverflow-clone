@@ -60,6 +60,21 @@ function Auth() {
     });
   };
 
+  const handleGuestLogin = (e) => {
+    e.preventDefault();
+    dispatch(
+      login(
+        {
+          name: "Gandhi",
+          email: "gandhi@gmail.com",
+          password: "hello",
+        },
+        navigate,
+        location
+      )
+    );
+  };
+
   return (
     <section className="auth-section">
       {isSignUp && <AboutUs />}
@@ -130,6 +145,9 @@ function Auth() {
           )}
           <button type="submit" className="auth-btn">
             {isSignUp ? "Sign Up" : "Log In"}
+          </button>
+          <button onClick={(e) => handleGuestLogin(e)} className="auth-btn">
+            Guest Login
           </button>
           {isSignUp && (
             <p style={{ color: "#666767", fontSize: "13px" }}>
